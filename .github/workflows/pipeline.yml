@@ -38,4 +38,4 @@ jobs:
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "fullstackopen-pokedex123" #Must be unique in Heroku
-          heroku_email: ${{secrets.EMAIL}}"
+          heroku_email: ${{secrets.EMAIL}}
