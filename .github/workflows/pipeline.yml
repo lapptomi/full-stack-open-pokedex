@@ -41,5 +41,7 @@ jobs:
           heroku_email: ${{secrets.EMAIL}}
           healthcheck: "https://fullstackopen-pokedex123.herokuapp.com/health"
           checkstring: "ok"
+          rollbackonhealthcheckfailed: true
+
 
 
