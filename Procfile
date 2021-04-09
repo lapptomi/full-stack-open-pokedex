@@ -1,1 +1,1 @@
-web: node wrong2.js
+web: node app.js
