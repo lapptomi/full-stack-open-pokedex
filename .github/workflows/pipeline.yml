@@ -38,11 +38,11 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:5000
 
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      - uses: akhileshns/heroku-deploy@v3.12.12
         if: ${{ github.event_name == 'push' }}
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "fullstackopen-pokedex123" #Must be unique in Heroku
+          heroku_app_name: "fullstackopen-pokedex123"
           heroku_email: ${{secrets.EMAIL}}
           healthcheck: "https://fullstackopen-pokedex123.herokuapp.com/health"
           checkstring: "ok"
