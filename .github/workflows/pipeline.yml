@@ -38,15 +38,16 @@ jobs:
           start: npm run start-prod
           wait-on: http://localhost:5000
 
-      - uses: akhileshns/heroku-deploy@v3.12.12
-        if: ${{ github.event_name == 'push' }}
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "fullstackopen-pokedex123"
-          heroku_email: ${{secrets.EMAIL}}
-          healthcheck: "https://fullstackopen-pokedex123.herokuapp.com/health"
-          checkstring: "ok"
-          rollbackonhealthcheckfailed: true
+      
+      # - uses: akhileshns/heroku-deploy@v3.12.12
+      #  if: ${{ github.event_name == 'push' }}
+      #  with:
+      #    heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+      #    heroku_app_name: "fullstackopen-pokedex123"
+      #    heroku_email: ${{secrets.EMAIL}}
+      #    healthcheck: "https://fullstackopen-pokedex123.herokuapp.com/health"
+      #    checkstring: "ok"
+      #    rollbackonhealthcheckfailed: true
 
       - uses: actions/checkout@v2
       - name: Bump version and push tag
@@ -55,5 +56,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: 'patch'
+
+      - name: gihub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      - name: commits
+        env:
+          COMMITS: ${{ toJson(github.event.commits) }}
+        run: echo "$COMMITS"
+      - name: commit messages
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+        run: echo "$COMMIT_MESSAGES"
 
 
